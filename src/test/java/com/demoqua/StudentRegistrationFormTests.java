@@ -14,6 +14,7 @@ public class StudentRegistrationFormTests {
 
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
+        Configuration.pageLoadStrategy = "eager";
     }
 
     @Test
@@ -22,22 +23,22 @@ public class StudentRegistrationFormTests {
         String lastName = "Doe";
         String dateOfBirthYear = "1989";
         String dateOfBirthMonth = "March";
-        String dateOfBirthdayDay = "18";
+        String dateOfBirthdayDay = "18"; // Формат хх, например 01, 05, 10, 25
         String userEmail = "testmail@testmail.test";
         String userPhoneNumber = "9876543210";
         String gender = "Male";
         String subject1 = "Maths";
         String subject2 = "English";
-        String hobbie1 = "Music";
-        String hobbie2 = "Sports";
+        String hobby1 = "Music";
+        String hobby2 = "Sports";
         String currentAddress = "Gandhi Chowk Street, 10";
         String pictureFileFromClassPath = "empty.jpg";
         String stateName = "Uttar Pradesh";
         String cityName = "Agra";
 
         open("/automation-practice-form");
-        open("/automation-practice-form");
-        open("/automation-practice-form");
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
 
         //Name
         $("#firstName").setValue(firstName);
@@ -61,13 +62,9 @@ public class StudentRegistrationFormTests {
         //Month
         $(".react-datepicker__month-select").selectOption(dateOfBirthMonth);
         $(".react-datepicker__month-select").click();
+
         //Day
-        String daySelector = "";
-        if (dateOfBirthdayDay.length() < 2) {
-            daySelector = ".react-datepicker__day.react-datepicker__day--00" + dateOfBirthdayDay;
-        } else {
-            daySelector = ".react-datepicker__day.react-datepicker__day--0" + dateOfBirthdayDay;
-        }
+        String daySelector = ".react-datepicker__day.react-datepicker__day--0" + dateOfBirthdayDay;
         $(daySelector).click();
 
         //Subjects
@@ -80,8 +77,8 @@ public class StudentRegistrationFormTests {
         //  $("#react-select-2-option-0").click();   //По первому совпадению
 
         //Hobbies
-        $(byText(hobbie1)).click();
-        $(byText(hobbie2)).click();
+        $(byText(hobby1)).click();
+        $(byText(hobby2)).click();
 
         //Picture
         $(byId("uploadPicture")).uploadFromClasspath(pictureFileFromClassPath);
@@ -104,12 +101,11 @@ public class StudentRegistrationFormTests {
         $(".table-responsive").shouldHave(text(userEmail));
         $(".table-responsive").shouldHave(text(gender));
         $(".table-responsive").shouldHave(text(userPhoneNumber));
-        $(".table-responsive").shouldHave(text(dateOfBirthdayDay + " "
-                                            + dateOfBirthMonth + "," + dateOfBirthYear ));
+        $(".table-responsive").shouldHave(text(dateOfBirthdayDay + " " + dateOfBirthMonth + "," + dateOfBirthYear));
         $(".table-responsive").shouldHave(text(subject1));
         $(".table-responsive").shouldHave(text(subject2));
-        $(".table-responsive").shouldHave(text(hobbie1));
-        $(".table-responsive").shouldHave(text(hobbie2));
+        $(".table-responsive").shouldHave(text(hobby1));
+        $(".table-responsive").shouldHave(text(hobby2));
 
         $(".table-responsive").shouldHave(text(pictureFileFromClassPath));
         $(".table-responsive").shouldHave(text(currentAddress));
