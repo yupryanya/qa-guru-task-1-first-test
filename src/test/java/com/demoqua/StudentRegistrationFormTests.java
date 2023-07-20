@@ -22,8 +22,8 @@ public class StudentRegistrationFormTests {
         String firstName = "John";
         String lastName = "Doe";
         String dateOfBirthYear = "1989";
-        String dateOfBirthMonth = "March";
-        String dateOfBirthdayDay = "18"; // Формат хх, например 01, 05, 10, 25
+        String dateOfBirthMonth = "June";
+        String dateOfBirthdayDay = "10"; // Формат хх, например 01, 05, 10, 25
         String userEmail = "testmail@testmail.test";
         String userPhoneNumber = "9876543210";
         String gender = "Male";
@@ -110,8 +110,6 @@ public class StudentRegistrationFormTests {
         $(".table-responsive").shouldHave(text(pictureFileFromClassPath));
         $(".table-responsive").shouldHave(text(currentAddress));
         $(".table-responsive").shouldHave(text(stateName + " " + cityName));
-
     }
-
 }
 
