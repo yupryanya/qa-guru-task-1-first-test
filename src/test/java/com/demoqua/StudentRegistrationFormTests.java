@@ -21,9 +21,9 @@ public class StudentRegistrationFormTests {
     void fillFormTest() {
         String firstName = "John";
         String lastName = "Doe";
-        String dateOfBirthYear = "1989";
-        String dateOfBirthMonth = "June";
-        String dateOfBirthdayDay = "10"; // Формат хх, например 01, 05, 10, 25
+        String dateOfBirthYear = "2023";
+        String dateOfBirthMonth = "August";
+        String dateOfBirthdayDay = "31"; // Формат хх, например 01, 05, 10, 25
         String userEmail = "testmail@testmail.test";
         String userPhoneNumber = "9876543210";
         String gender = "Male";
@@ -64,7 +64,7 @@ public class StudentRegistrationFormTests {
         $(".react-datepicker__month-select").click();
 
         //Day
-        String daySelector = ".react-datepicker__day.react-datepicker__day--0" + dateOfBirthdayDay;
+        String daySelector = "div.react-datepicker__day--0" + dateOfBirthdayDay +":not(.react-datepicker__day--outside-month)";
         $(daySelector).click();
 
         //Subjects
